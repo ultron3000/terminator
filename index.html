@@ -68,9 +68,8 @@
 <body>
 
 <h1>🚨 Terminator Cinematic Universe</h1>
-
+<input id="searchBar" placeholder="Search Terminator movies..." style="width: calc(100% - 40px);max-width: 100%;margin: 20px auto;padding: 10px 15px;font-size: 1em;border-radius: 8px;border: 2px solid #ffcc00;background: #111;color: #ffcc00;box-shadow: 0 0 10px #ffcc00a0;display: block;" type="text"/>
 <div class="movies" id="movies"></div>
-
 <script>
 const movies = [
   { title: "The Terminator-1984", video: "https://sr81.carrrieh.sbs:443/v4/9a/6nyna/index-f2-v1-a1.txt", image: "https://i.pinimg.com/736x/bb/4a/2f/bb4a2ffdfaa5095e7f74f14fb2487089.jpg" },
@@ -95,6 +94,23 @@ movies.forEach((movie, index) => {
   };
   container.appendChild(div);
 });
+// Live Search Filter
+
+document.getElementById('searchBar').addEventListener('input', function () {
+
+  const searchTerm = this.value.toLowerCase();
+
+  const movieDivs = document.querySelectorAll('.movie');
+
+  movieDivs.forEach(div => {
+
+    const title = div.querySelector('.movie-title').textContent.toLowerCase();
+
+    div.style.display = title.includes(searchTerm) ? 'block' : 'none';
+
+  });
+
+});  
 </script>
 
 </body>
